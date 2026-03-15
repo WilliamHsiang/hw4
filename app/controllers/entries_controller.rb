@@ -1,6 +1,9 @@
 class EntriesController < ApplicationController
 
   def new
+    if session[:user_id].nil?
+      redirect_to "/login"
+    end
   end
 
   def create
@@ -10,6 +13,7 @@ class EntriesController < ApplicationController
     @entry["occurred_on"] = params["occurred_on"]
     @entry["place_id"] = params["place_id"]
     @entry["user_id"] = session[:user_id]
+    @entry.image.attach(params[:image]) if params[:image].present?
     @entry.save
     redirect_to "/places/#{@entry["place_id"]}"
   end

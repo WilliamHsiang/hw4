@@ -4,9 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "4.0.1"
 
 gem "rails", "~> 8.1.2"
-gem "sqlite3", "~> 2.1"
+gem "sqlite3", "~> 2.1", group: [:development, :test]
+gem "pg", "~> 1.1", group: :production
 gem "puma", ">= 5.0"
 gem "bcrypt", "~> 3.1.7"
+gem "image_processing", "~> 1.2"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # gem "csv"
 gem "cgi"
